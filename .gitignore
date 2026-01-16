@@ -1,3 +1,7 @@
 _site
 **/.quarto/
 ./quarto/
+/.quarto/
+**/*.quarto_ipynb
+
+./venv/
