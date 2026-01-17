@@ -1,15 +1,16 @@
+name: Quarto Publish
+
 on:
   workflow_dispatch:
   push:
     branches: main
-
-name: Quarto Publish
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -20,10 +21,26 @@ jobs:
       - name: Install Python and Dependencies
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-          cache: 'pip'
-      - run: pip install jupyter
-      - run: pip install -r requirements.txt
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install Jupyter packages (skip pywinpty on Linux)
+        run: |
+          # Install notebook + jupyterlab without forcing pywinpty on non-Windows
+          pip install notebook jupyterlab
+
+      # If you have other dependencies that might pull pywinpty unconditionally,
+      # you can use this safer pattern instead of the line above:
+      # pip install notebook jupyterlab --no-deps
+      # pip install -r requirements.txt || true   # continue even if something fails
+
+      - name: Install remaining project dependencies
+        run: |
+          # Install your project-specific packages
+          pip install -r requirements.txt
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
