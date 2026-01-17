@@ -1,0 +1,1139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Cody Learns Data</title>
+<link>https://codyveladev.github.io/cody-learns-data/</link>
+<atom:link href="https://codyveladev.github.io/cody-learns-data/index.xml" rel="self" type="application/rss+xml"/>
+<description>A blog built with Quarto</description>
+<generator>quarto-1.8.26</generator>
+<lastBuildDate>Sat, 17 Jan 2026 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Matplotlib Crash Course</title>
+  <dc:creator>Cody Vela</dc:creator>
+  <link>https://codyveladev.github.io/cody-learns-data/posts/matplotlib-crash-course/notebook.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>Similar to my last post, this is going to be a refresher on using the matplotlib library.</p>
+<div id="b1e09571" class="cell" data-execution_count="38">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-3"></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Sample data</span></span>
+<span id="cb1-5">t <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.arange(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot all three lines in a single call</span></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 'r--' for red dashes, 'bs' for blue squares (markers only), 'g^' for green triangles (markers only)</span></span>
+<span id="cb1-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Note: for full lines, it's generally clearer to use the multiple calls method with labels.</span></span>
+<span id="cb1-10">plt.plot(t, t, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'r--'</span>, t, t<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'b'</span>, t, t<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'g'</span>)</span>
+<span id="cb1-11"></span>
+<span id="cb1-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Display the plot</span></span>
+<span id="cb1-13">plt.show()</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://codyveladev.github.io/cody-learns-data/posts/matplotlib-crash-course/notebook_files/figure-html/cell-2-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="e2a2f9ef" class="cell" data-execution_count="39">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb2-2">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"../pandas-crash-course/data/sales_data.csv"</span>)</span>
+<span id="cb2-3">df.head()</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Product_ID</th>
+<th data-quarto-table-cell-role="th">Sale_Date</th>
+<th data-quarto-table-cell-role="th">Sales_Rep</th>
+<th data-quarto-table-cell-role="th">Region</th>
+<th data-quarto-table-cell-role="th">Sales_Amount</th>
+<th data-quarto-table-cell-role="th">Quantity_Sold</th>
+<th data-quarto-table-cell-role="th">Product_Category</th>
+<th data-quarto-table-cell-role="th">Unit_Cost</th>
+<th data-quarto-table-cell-role="th">Unit_Price</th>
+<th data-quarto-table-cell-role="th">Customer_Type</th>
+<th data-quarto-table-cell-role="th">Discount</th>
+<th data-quarto-table-cell-role="th">Payment_Method</th>
+<th data-quarto-table-cell-role="th">Sales_Channel</th>
+<th data-quarto-table-cell-role="th">Region_and_Sales_Rep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1052</td>
+<td>2023-02-03</td>
+<td>Bob</td>
+<td>North</td>
+<td>5053.97</td>
+<td>18</td>
+<td>Furniture</td>
+<td>152.75</td>
+<td>267.22</td>
+<td>Returning</td>
+<td>0.09</td>
+<td>Cash</td>
+<td>Online</td>
+<td>North-Bob</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1093</td>
+<td>2023-04-21</td>
+<td>Bob</td>
+<td>West</td>
+<td>4384.02</td>
+<td>17</td>
+<td>Furniture</td>
+<td>3816.39</td>
+<td>4209.44</td>
+<td>Returning</td>
+<td>0.11</td>
+<td>Cash</td>
+<td>Retail</td>
+<td>West-Bob</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1015</td>
+<td>2023-09-21</td>
+<td>David</td>
+<td>South</td>
+<td>4631.23</td>
+<td>30</td>
+<td>Food</td>
+<td>261.56</td>
+<td>371.40</td>
+<td>Returning</td>
+<td>0.20</td>
+<td>Bank Transfer</td>
+<td>Retail</td>
+<td>South-David</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1072</td>
+<td>2023-08-24</td>
+<td>Bob</td>
+<td>South</td>
+<td>2167.94</td>
+<td>39</td>
+<td>Clothing</td>
+<td>4330.03</td>
+<td>4467.75</td>
+<td>New</td>
+<td>0.02</td>
+<td>Credit Card</td>
+<td>Retail</td>
+<td>South-Bob</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1061</td>
+<td>2023-03-24</td>
+<td>Charlie</td>
+<td>East</td>
+<td>3750.20</td>
+<td>13</td>
+<td>Electronics</td>
+<td>637.37</td>
+<td>692.71</td>
+<td>New</td>
+<td>0.08</td>
+<td>Credit Card</td>
+<td>Online</td>
+<td>East-Charlie</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="aeb38b40" class="cell" data-execution_count="40">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb3-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb3-3"></span>
+<span id="cb3-4">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.to_datetime(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>])</span>
+<span id="cb3-5"></span>
+<span id="cb3-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Assuming your pivoted data (use pivot_table to be safe)</span></span>
+<span id="cb3-7">pivot <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df.groupby([df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sale_Date'</span>].dt.to_period(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'M'</span>), <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Region'</span>])[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sales_Amount'</span>]<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\</span></span>
+<span id="cb3-8">         .<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().unstack().fillna(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb3-9"></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot</span></span>
+<span id="cb3-11">ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pivot.plot(kind<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'bar'</span>, figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>), width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6</span>)</span>
+<span id="cb3-12"></span>
+<span id="cb3-13"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> container <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> ax.containers:</span>
+<span id="cb3-14">    ax.bar_label(container, label_type<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'edge'</span>, padding<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, fmt<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%d</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'</span>)</span>
+<span id="cb3-15"></span>
+<span id="cb3-16">plt.title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Monthly Quantity Sold by Product Category (Grouped)'</span>, fontsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb3-17">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Month'</span>)</span>
+<span id="cb3-18">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Quantity Sold'</span>)</span>
+<span id="cb3-19">plt.legend(title<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'Sales Rep'</span>, bbox_to_anchor<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.02</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), loc<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'upper left'</span>)</span>
+<span id="cb3-20">plt.grid(axis<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'y'</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>)</span>
+<span id="cb3-21">plt.xticks(rotation<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">45</span>, ha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'right'</span>)</span>
+<span id="cb3-22">plt.tight_layout()</span>
+<span id="cb3-23">plt.show()</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://codyveladev.github.io/cody-learns-data/posts/matplotlib-crash-course/notebook_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
+ ]]></description>
+  <category>code</category>
+  <category>foundations</category>
+  <guid>https://codyveladev.github.io/cody-learns-data/posts/matplotlib-crash-course/notebook.html</guid>
+  <pubDate>Sat, 17 Jan 2026 06:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Pandas Crash Course</title>
+  <dc:creator>Cody Vela</dc:creator>
+  <link>https://codyveladev.github.io/cody-learns-data/posts/pandas-crash-course/notebook.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>This is a simple crash course over pandas, it’s been a while since I have worked wih the tool, so I will spend some time reviewing the fundamentals before diving deeper into data.</p>
+<section id="what-is-pandas" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-pandas">What is Pandas?</h2>
+<p>Pandas is an open source data analysis and manipulation tool that is built on python utilizing NumPy. It’s main use cases are data cleaning, transformation, and analysis in fields such as finance, science and machine learning.</p>
+</section>
+<section id="core-data-structures" class="level2">
+<h2 class="anchored" data-anchor-id="core-data-structures">Core Data Structures</h2>
+<section id="series" class="level3">
+<h3 class="anchored" data-anchor-id="series">Series</h3>
+<p>A series is a 1D labeled homogenously-typed array. It can be used as the following:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.Series(data, index<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>index)</span></code></pre></div></div>
+<p>An example of the code could be seen as this:</p>
+<div id="26231562" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np </span>
+<span id="cb2-2"></span>
+<span id="cb2-3">s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.Series(np.random.rand(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>), index<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"a"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"b"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"c"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"d"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"e"</span>])</span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(s)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>a    0.400395
+b    0.770148
+c    0.340275
+d    0.433246
+e    0.252000
+dtype: float64</code></pre>
+</div>
+</div>
+<p>This is an example of a series with a datatype of float.</p>
+</section>
+<section id="dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe">Dataframe</h3>
+<p>A DataFrame is a 2-dimensional labeled data structure with columns of different types. This is similar to a spreadsheet or SQL table, or a dict of Series objects. It is the most commonly used pandas object.</p>
+<p>To show how it can be used to convert a python dictionary, we will use a sample dict and convert it to a DataFrame</p>
+<div id="db13e5ef" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> {</span>
+<span id="cb4-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Order_ID"</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">101</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">102</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">103</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">104</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">105</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">106</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">107</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">108</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">109</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">110</span>],</span>
+<span id="cb4-3">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Customer_Name"</span>: [</span>
+<span id="cb4-4">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Alice"</span>,</span>
+<span id="cb4-5">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Bob"</span>,</span>
+<span id="cb4-6">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Charlie"</span>,</span>
+<span id="cb4-7">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"David"</span>,</span>
+<span id="cb4-8">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Eve"</span>,</span>
+<span id="cb4-9">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Frank"</span>,</span>
+<span id="cb4-10">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Grace"</span>,</span>
+<span id="cb4-11">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Heidi"</span>,</span>
+<span id="cb4-12">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Ivan"</span>,</span>
+<span id="cb4-13">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Judy"</span>,</span>
+<span id="cb4-14">    ],</span>
+<span id="cb4-15">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Product"</span>: [</span>
+<span id="cb4-16">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Laptop"</span>,</span>
+<span id="cb4-17">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Phone"</span>,</span>
+<span id="cb4-18">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tablet"</span>,</span>
+<span id="cb4-19">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Laptop"</span>,</span>
+<span id="cb4-20">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Headphones"</span>,</span>
+<span id="cb4-21">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Phone"</span>,</span>
+<span id="cb4-22">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tablet"</span>,</span>
+<span id="cb4-23">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Monitor"</span>,</span>
+<span id="cb4-24">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Laptop"</span>,</span>
+<span id="cb4-25">        np.nan,</span>
+<span id="cb4-26">    ],</span>
+<span id="cb4-27">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Category"</span>: [</span>
+<span id="cb4-28">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-29">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-30">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-31">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-32">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Accessories"</span>,</span>
+<span id="cb4-33">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-34">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-35">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-36">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Electronics"</span>,</span>
+<span id="cb4-37">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Accessories"</span>,</span>
+<span id="cb4-38">    ],</span>
+<span id="cb4-39">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity"</span>: [<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, np.nan, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>],</span>
+<span id="cb4-40">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Price"</span>: [</span>
+<span id="cb4-41">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1200.50</span>,</span>
+<span id="cb4-42">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">800.00</span>,</span>
+<span id="cb4-43">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.00</span>,</span>
+<span id="cb4-44">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1200.50</span>,</span>
+<span id="cb4-45">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50.00</span>,</span>
+<span id="cb4-46">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">800.00</span>,</span>
+<span id="cb4-47">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.00</span>,</span>
+<span id="cb4-48">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200.00</span>,</span>
+<span id="cb4-49">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1200.50</span>,</span>
+<span id="cb4-50">        <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50.00</span>,</span>
+<span id="cb4-51">    ],</span>
+<span id="cb4-52">}</span>
+<span id="cb4-53"></span>
+<span id="cb4-54">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(data)</span>
+<span id="cb4-55"></span>
+<span id="cb4-56"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Order_ID Customer_Name     Product     Category  Quantity   Price
+0       101         Alice      Laptop  Electronics       1.0  1200.5
+1       102           Bob       Phone  Electronics       2.0   800.0
+2       103       Charlie      Tablet  Electronics       1.0   300.0
+3       104         David      Laptop  Electronics       3.0  1200.5
+4       105           Eve  Headphones  Accessories       5.0    50.0
+5       106         Frank       Phone  Electronics       1.0   800.0
+6       107         Grace      Tablet  Electronics       NaN   300.0
+7       108         Heidi     Monitor  Electronics       2.0   200.0
+8       109          Ivan      Laptop  Electronics       4.0  1200.5
+9       110          Judy         NaN  Accessories       1.0    50.0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="simple-exercise" class="level2">
+<h2 class="anchored" data-anchor-id="simple-exercise">Simple Exercise</h2>
+<p>For this example to build on top of what we know, I am going to do some basic data analysis on the following dataset from Kaggle to get more familar with pandas again. The dataset contains some mock sales data and can be found <a href="https://www.kaggle.com/datasets/vinothkannaece/sales-dataset">here</a>.</p>
+<div id="87bd5f2c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./data/sales_data.csv"</span>)</span></code></pre></div></div>
+</div>
+<section id="get-to-know-the-data-at-a-glance" class="level3">
+<h3 class="anchored" data-anchor-id="get-to-know-the-data-at-a-glance">Get to know the data at a glance</h3>
+<ul>
+<li>See first few rows</li>
+<li>See the total number of columns</li>
+<li>See the column names</li>
+</ul>
+<div id="528d88fd" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">df.head()</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="319">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Product_ID</th>
+<th data-quarto-table-cell-role="th">Sale_Date</th>
+<th data-quarto-table-cell-role="th">Sales_Rep</th>
+<th data-quarto-table-cell-role="th">Region</th>
+<th data-quarto-table-cell-role="th">Sales_Amount</th>
+<th data-quarto-table-cell-role="th">Quantity_Sold</th>
+<th data-quarto-table-cell-role="th">Product_Category</th>
+<th data-quarto-table-cell-role="th">Unit_Cost</th>
+<th data-quarto-table-cell-role="th">Unit_Price</th>
+<th data-quarto-table-cell-role="th">Customer_Type</th>
+<th data-quarto-table-cell-role="th">Discount</th>
+<th data-quarto-table-cell-role="th">Payment_Method</th>
+<th data-quarto-table-cell-role="th">Sales_Channel</th>
+<th data-quarto-table-cell-role="th">Region_and_Sales_Rep</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1052</td>
+<td>2023-02-03</td>
+<td>Bob</td>
+<td>North</td>
+<td>5053.97</td>
+<td>18</td>
+<td>Furniture</td>
+<td>152.75</td>
+<td>267.22</td>
+<td>Returning</td>
+<td>0.09</td>
+<td>Cash</td>
+<td>Online</td>
+<td>North-Bob</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>1093</td>
+<td>2023-04-21</td>
+<td>Bob</td>
+<td>West</td>
+<td>4384.02</td>
+<td>17</td>
+<td>Furniture</td>
+<td>3816.39</td>
+<td>4209.44</td>
+<td>Returning</td>
+<td>0.11</td>
+<td>Cash</td>
+<td>Retail</td>
+<td>West-Bob</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>1015</td>
+<td>2023-09-21</td>
+<td>David</td>
+<td>South</td>
+<td>4631.23</td>
+<td>30</td>
+<td>Food</td>
+<td>261.56</td>
+<td>371.40</td>
+<td>Returning</td>
+<td>0.20</td>
+<td>Bank Transfer</td>
+<td>Retail</td>
+<td>South-David</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>1072</td>
+<td>2023-08-24</td>
+<td>Bob</td>
+<td>South</td>
+<td>2167.94</td>
+<td>39</td>
+<td>Clothing</td>
+<td>4330.03</td>
+<td>4467.75</td>
+<td>New</td>
+<td>0.02</td>
+<td>Credit Card</td>
+<td>Retail</td>
+<td>South-Bob</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>1061</td>
+<td>2023-03-24</td>
+<td>Charlie</td>
+<td>East</td>
+<td>3750.20</td>
+<td>13</td>
+<td>Electronics</td>
+<td>637.37</td>
+<td>692.71</td>
+<td>New</td>
+<td>0.08</td>
+<td>Credit Card</td>
+<td>Online</td>
+<td>East-Charlie</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="d65c8e89" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">df.shape</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="320">
+<pre><code>(1000, 14)</code></pre>
+</div>
+</div>
+<div id="ada44359" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">df.columns</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="321">
+<pre><code>Index(['Product_ID', 'Sale_Date', 'Sales_Rep', 'Region', 'Sales_Amount',
+       'Quantity_Sold', 'Product_Category', 'Unit_Cost', 'Unit_Price',
+       'Customer_Type', 'Discount', 'Payment_Method', 'Sales_Channel',
+       'Region_and_Sales_Rep'],
+      dtype='object')</code></pre>
+</div>
+</div>
+</section>
+<section id="check-the-data-types-and-spot-missing-values" class="level3">
+<h3 class="anchored" data-anchor-id="check-the-data-types-and-spot-missing-values">Check the data types and spot missing values</h3>
+<ul>
+<li>What type has been given to each column?</li>
+<li>Which columns have missing values and how many?</li>
+</ul>
+<div id="d839ce9c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1">df.dtypes</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="322">
+<pre><code>Product_ID                int64
+Sale_Date                object
+Sales_Rep                object
+Region                   object
+Sales_Amount            float64
+Quantity_Sold             int64
+Product_Category         object
+Unit_Cost               float64
+Unit_Price              float64
+Customer_Type            object
+Discount                float64
+Payment_Method           object
+Sales_Channel            object
+Region_and_Sales_Rep     object
+dtype: object</code></pre>
+</div>
+</div>
+<div id="04295450" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1">df.isna().<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span>
+<span id="cb14-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># No missing values - great!</span></span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="323">
+<pre><code>Product_ID              0
+Sale_Date               0
+Sales_Rep               0
+Region                  0
+Sales_Amount            0
+Quantity_Sold           0
+Product_Category        0
+Unit_Cost               0
+Unit_Price              0
+Customer_Type           0
+Discount                0
+Payment_Method          0
+Sales_Channel           0
+Region_and_Sales_Rep    0
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="get-basic-stats-of-the-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="get-basic-stats-of-the-numbers">Get basic stats of the numbers</h3>
+<p>Before we do that, let’s do a quick translation for the Sales_Date column</p>
+<div id="4b3b90a6" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1">df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.to_datetime(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>])</span>
+<span id="cb16-2">df.dtypes</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="324">
+<pre><code>Product_ID                       int64
+Sale_Date               datetime64[ns]
+Sales_Rep                       object
+Region                          object
+Sales_Amount                   float64
+Quantity_Sold                    int64
+Product_Category                object
+Unit_Cost                      float64
+Unit_Price                     float64
+Customer_Type                   object
+Discount                       float64
+Payment_Method                  object
+Sales_Channel                   object
+Region_and_Sales_Rep            object
+dtype: object</code></pre>
+</div>
+</div>
+<p>Price</p>
+<ul>
+<li>Whats the average price of the sales?</li>
+<li>Whats the least sale price?</li>
+<li>Whats the most expensive sale?</li>
+<li>Whats the median of the price of sale?</li>
+</ul>
+<div id="aee19adc" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average: "</span>, df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Amount"</span>].mean())</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Average:  5019.265229999999</code></pre>
+</div>
+</div>
+<div id="01bd387f" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Min: "</span>,df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Amount"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">min</span>())</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Min:  100.12</code></pre>
+</div>
+</div>
+<div id="b3a9ab17" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Max: "</span>,df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Amount"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>())</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Max:  9989.04</code></pre>
+</div>
+</div>
+<div id="f86b8d47" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Median: "</span>,df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Amount"</span>].median())</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Median:  5019.3</code></pre>
+</div>
+</div>
+</section>
+<section id="find-the-top-categories-top-sales-rep-top-region-top-product" class="level3">
+<h3 class="anchored" data-anchor-id="find-the-top-categories-top-sales-rep-top-region-top-product">Find the top categories / top sales rep / top region / top product</h3>
+<div id="f0064622" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Product_Category"</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().sort_values(ascending<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="329">
+<pre><code>Product_Category
+Clothing       6922
+Furniture      6729
+Electronics    6096
+Food           5608
+Name: Quantity_Sold, dtype: int64</code></pre>
+</div>
+</div>
+<div id="94e970ad" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Rep"</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().sort_values(ascending<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="330">
+<pre><code>Sales_Rep
+David      6042
+Eve        5287
+Bob        4977
+Alice      4832
+Charlie    4217
+Name: Quantity_Sold, dtype: int64</code></pre>
+</div>
+</div>
+<div id="79925cfc" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Product_ID"</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().sort_values(ascending<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="331">
+<pre><code>Product_ID
+1090    590
+1092    548
+1062    506
+1099    502
+1058    452
+       ... 
+1083    125
+1065    105
+1011     75
+1043     65
+1031     64
+Name: Quantity_Sold, Length: 100, dtype: int64</code></pre>
+</div>
+</div>
+<div id="a811295c" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1">df.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Channel"</span>)[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().sort_values(ascending<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="332">
+<pre><code>Sales_Channel
+Retail    12753
+Online    12602
+Name: Quantity_Sold, dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="seeing-time-based-sums" class="level3">
+<h3 class="anchored" data-anchor-id="seeing-time-based-sums">Seeing time based sums</h3>
+<ul>
+<li>What product sold the most in a year?</li>
+<li>Who sold the most in Feb ’23?</li>
+<li>What was the highest sale in each month?</li>
+</ul>
+<div id="f30f8424" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1">df.groupby(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>].dt.to_period(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Y"</span>))[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>()</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="333">
+<pre><code>Sale_Date
+2023    25278
+2024       77
+Freq: Y-DEC, Name: Quantity_Sold, dtype: int64</code></pre>
+</div>
+</div>
+<div id="0cd73851" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1">mask <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>].dt.year <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2023</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> (df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>].dt.month <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb36-2">df[mask].groupby(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Rep"</span>])[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Quantity_Sold"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">sum</span>().sort_values(ascending<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="334">
+<pre><code>Sales_Rep
+David      534
+Alice      465
+Charlie    387
+Eve        346
+Bob        332
+Name: Quantity_Sold, dtype: int64</code></pre>
+</div>
+</div>
+<div id="7c00ebc4" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1">df.groupby(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sale_Date"</span>].dt.to_period(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"M"</span>))[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Sales_Amount"</span>].<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>()</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="335">
+<pre><code>Sale_Date
+2023-01    9813.81
+2023-02    9813.32
+2023-03    9755.90
+2023-04    9961.96
+2023-05    9744.52
+2023-06    9736.49
+2023-07    9638.64
+2023-08    9976.52
+2023-09    9914.15
+2023-10    9933.22
+2023-11    9762.54
+2023-12    9989.04
+2024-01    8579.72
+Freq: M, Name: Sales_Amount, dtype: float64</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>code</category>
+  <category>foundations</category>
+  <guid>https://codyveladev.github.io/cody-learns-data/posts/pandas-crash-course/notebook.html</guid>
+  <pubDate>Fri, 16 Jan 2026 06:00:00 GMT</pubDate>
+  <media:content url="https://codyveladev.github.io/cody-learns-data/posts/pandas-crash-course/image.png" medium="image" type="image/png" height="90" width="144"/>
+</item>
+</channel>
+</rss>
