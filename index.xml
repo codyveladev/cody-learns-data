@@ -9,8 +9,8 @@
 <link>https://codyveladev.github.io/cody-learns-data/</link>
 <atom:link href="https://codyveladev.github.io/cody-learns-data/index.xml" rel="self" type="application/rss+xml"/>
 <description>A blog built with Quarto</description>
-<generator>quarto-1.8.26</generator>
-<lastBuildDate>Sat, 17 Jan 2026 06:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.27</generator>
+<lastBuildDate>Sat, 17 Jan 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Matplotlib Crash Course</title>
   <dc:creator>Cody Vela</dc:creator>
@@ -367,7 +367,7 @@ font-style: inherit;">'right'</span>)</span>
   <category>code</category>
   <category>foundations</category>
   <guid>https://codyveladev.github.io/cody-learns-data/posts/matplotlib-crash-course/notebook.html</guid>
-  <pubDate>Sat, 17 Jan 2026 06:00:00 GMT</pubDate>
+  <pubDate>Sat, 17 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Pandas Crash Course</title>
@@ -1132,7 +1132,7 @@ Freq: M, Name: Sales_Amount, dtype: float64</code></pre>
   <category>code</category>
   <category>foundations</category>
   <guid>https://codyveladev.github.io/cody-learns-data/posts/pandas-crash-course/notebook.html</guid>
-  <pubDate>Fri, 16 Jan 2026 06:00:00 GMT</pubDate>
+  <pubDate>Fri, 16 Jan 2026 00:00:00 GMT</pubDate>
   <media:content url="https://codyveladev.github.io/cody-learns-data/posts/pandas-crash-course/image.png" medium="image" type="image/png" height="90" width="144"/>
 </item>
 </channel>

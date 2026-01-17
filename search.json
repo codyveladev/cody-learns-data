@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
     "objectID": "posts/pandas-crash-course/notebook.html",
     "href": "posts/pandas-crash-course/notebook.html",
     "title": "Pandas Crash Course",
@@ -33,13 +40,6 @@
     "title": "Cody Learns Data",
     "section": "",
     "text": "Matplotlib Crash Course\n\n\n\ncode\n\nfoundations\n\n\n\n\n\n\n\n\n\nJan 17, 2026\n\n\nCody Vela\n\n\n\n\n\n\n\n\n\n\n\n\nPandas Crash Course\n\n\n\ncode\n\nfoundations\n\n\n\n\n\n\n\n\n\nJan 16, 2026\n\n\nCody Vela\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this blog"
   },
   {
     "objectID": "posts/matplotlib-crash-course/notebook.html",
